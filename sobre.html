@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FEXTEC | Tecnologia & Consumo 5.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+  <style>
+    :root {
+      --azul: #0078ff;
+      --roxo: #7928ca;
+      --ciano: #00d4ff;
+      --branco: #ffffff;
+      --preto: #0a0a0a;
+      --transicao: all 0.4s ease;
+      --fonte1: 'Poppins', sans-serif;
+      --fonte2: 'Montserrat', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--fonte1);
+      background: radial-gradient(circle at top, #050505, #0b0b16 70%);
+      color: var(--branco);
+      min-height: 100vh;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 80px;
+      background: rgba(15, 15, 15, 0.5);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      transition: var(--transicao);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, var(--azul), var(--ciano));
+      -webkit-background-clip: text;
+      color: transparent;
+      cursor: default;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 35px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--branco);
+      font-weight: 500;
+      position: relative;
+      transition: var(--transicao);
+      cursor: pointer;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--azul), var(--roxo));
+      left: 0;
+      bottom: -4px;
+      transition: var(--transicao);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 0 20px;
+    }
+
+    canvas#particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      z-index: 1;
+      max-width: 800px;
+      padding: 20px;
+      animation: fadeIn 2s ease;
+      background: rgba(0,0,0,0.4);
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+    }
+
+    .hero h1 {
+      font-family: var(--fonte2);
+      font-size: 3.8rem;
+      background: linear-gradient(135deg, var(--azul), var(--ciano), var(--roxo));
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: #e0e0e0;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      text-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
+    }
+
+    .hero a {
+      background: linear-gradient(135deg, var(--azul), var(--roxo));
+      color: var(--branco);
+      padding: 14px 50px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: var(--transicao);
+      box-shadow: 0 0 15px rgba(0, 120, 255, 0.5);
+      display: inline-block;
+    }
+
+    .hero a:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, var(--roxo), var(--ciano));
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.7);
+    }
+
+    /* Main Content */
+    main {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    main h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: var(--azul);
+    }
+
+    main p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--branco);
+      margin-bottom: 20px;
+    }
+
+    .btn-back {
+      background: var(--azul);
+      color: var(--branco);
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 20px;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      background: var(--roxo);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(10,10,10,0.8);
+      color: #aaa;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    footer a {
+      color: var(--ciano);
+      text-decoration: none;
+      transition: var(--transicao);
+    }
+
+    footer a:hover {
+      color: var(--roxo);
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: row;
+        padding: 15px 30px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav ul {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        background: rgba(15, 15, 15, 0.95);
+        height: calc(100% - 70px);
+        width: 220px;
+        flex-direction: column;
+        gap: 25px;
+        padding: 30px 20px;
+        transition: right 0.3s ease;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 999;
+      }
+
+      nav ul.active {
+        right: 0;
+      }
+
+      nav a {
+        font-size: 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">FEXTEC</div>
+    <nav>
+      <ul>
+        <li><a href="index.html" target="_blank">Início</a></li>
+        <li><a href="consumismo.html" target="_blank">Consumismo</a></li>
+        <li><a href="sobre.html" target="_blank">Tecnologia</a></li>
+        <li><a href="palestrantes.html" target="_blank">Palestrantes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <canvas id="particles"></canvas>
+    <div class="hero-content">
+      <h1>Tecnologia</h1>
+      <p>Na era 5.0, a tecnologia evolui para ser mais do que inovação: ela se torna humanizada, integrando inteligência artificial, empatia e responsabilidade social para criar soluções que colocam as pessoas no centro.
+        A tecnologia mudou a forma como as pessoas se comunicam e se relacionam nas redes sociais, plataformas como Instagram, TikTok e X conectam pessoas, divulgam ideias e criam novas formas de trabalho
+mas esse uso constante também traz desafios, como ansiedade, dependência digital e bolhas de informação causadas por algoritmos.
+Mesmo assim, as redes sociais dão voz a diferentes grupos e ajudam a promover causas importantes. Por isso, é essencial usá-las com consciência, buscando equilíbrio e responsabilidade.
+      </p>
+    </div>
+  </section>
+  
+  <footer>
+    <p>&copy; 2025 FEXTEC. Todos os direitos reservados. | <a href="termos.html">Termos de Serviço</a> | <a href="privacidade.html">Política de Privacidade</a></p>
+  </footer>
+
+  
